@@ -2,6 +2,8 @@ package cracked
 
 import "strings"
 
+// Given two strings write a function to determine if one is a permutation of
+// the  other.
 func isPermutation(a, b string) bool {
 	a = strings.ToLower(a)
 	b = strings.ToLower(b)

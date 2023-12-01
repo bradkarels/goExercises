@@ -5,6 +5,7 @@ import (
 	"strings"
 )
 
+// Given a string write a function to determine if it is a permutation of a palindrome. (need not be real words...)
 func isPalindromePermutation(s string) bool {
 	s = strings.ToLower(s)
 	ra := removeSpace([]rune(s))

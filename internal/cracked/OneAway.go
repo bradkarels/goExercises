@@ -1,5 +1,9 @@
 package cracked
 
+// Check to see if a string goof can be corrected with a single character operation:
+// 1. Insert a character
+// 2. remove a character
+// 3. replace a character
 func oneAway(valid, attempt string) bool {
 	if valid == attempt {
 		return false // Not "one off!"
@@ -9,15 +13,15 @@ func oneAway(valid, attempt string) bool {
 
 	lenValid := len(validRa)
 	lenAttempt := len(attemptRa)
-	max := lenValid + 1
-	min := lenValid - 1
-	if lenAttempt < min || lenAttempt > max {
+	maximum := lenValid + 1
+	minium := lenValid - 1
+	if lenAttempt < minium || lenAttempt > maximum {
 		return false
 	} else {
 		switch {
-		case lenAttempt == max: // extra  rune (len of attempt == max)
+		case lenAttempt == maximum: // extra  rune (len of attempt == maximum)
 			return exactlyOneTooManyRune(validRa, attemptRa)
-		case lenAttempt == min: // missing rune (len of attempt == min)
+		case lenAttempt == minium: // missing rune (len of attempt == minium)
 			return missingExactlyOneRune(validRa, attemptRa)
 		default: // incorrect rune (len must be ==)
 			return hasExactlyOneIncorrectRune(validRa, attemptRa)
@@ -52,13 +56,10 @@ func missingExactlyOneRune(v, a []rune) bool {
 	aIdx := 0
 	errCnt := 0
 	for errCnt < 2 {
-		//fmt.Printf("entering: %d %d\n", vIdx, aIdx)
 		if vIdx+1 > len(v) || aIdx+1 > len(a) {
-			//fmt.Printf("breaking: %d %d\n", vIdx, aIdx)
 			break
 		}
 		if v[vIdx] == a[aIdx] {
-			//fmt.Printf("muthafucka - we match!: %d %d\n", v[vIdx], a[aIdx])
 			vIdx++
 			aIdx++
 			continue
@@ -68,7 +69,6 @@ func missingExactlyOneRune(v, a []rune) bool {
 			continue
 		}
 	}
-	//fmt.Printf("errCnt: %d %t\n", errCnt, errCnt < 2)
 	return errCnt < 2
 }
 

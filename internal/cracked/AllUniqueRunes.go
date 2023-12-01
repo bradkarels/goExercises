@@ -2,6 +2,8 @@ package cracked
 
 type void struct{}
 
+// Write a function that tests a string to determine if all characters therein
+// are unique.
 func rAllUniq(s string) bool {
 	ra := []rune(s)
 	set := make(map[rune]void)

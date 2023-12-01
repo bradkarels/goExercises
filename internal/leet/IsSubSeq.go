@@ -1,6 +1,6 @@
 package main
 
-func isSubsequence(s string, t string) bool {
+func isSubsequence(s, t string) bool {
 	seq := []rune(s)
 	lseq := len(seq)
 	if lseq == 0 {
