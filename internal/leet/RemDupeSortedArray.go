@@ -1,0 +1,69 @@
+package main
+
+import (
+	"fmt"
+)
+
+// Given an integer array nums sorted in non-decreasing order, remove the duplicates in-place such that each unique element appears only once. The relative order of the elements should be kept the same. Then return the number of unique elements in nums.
+//
+// Consider the number of unique elements of nums to be k, to get accepted, you need to do the following things:
+//
+// Change the array nums such that the first k elements of nums contain the unique elements in the order they were present in nums initially. The remaining elements of nums are not important as well as the size of nums.
+// Return k.
+// Custom Judge:
+//
+// The judge will test your solution with the following code:
+//
+// int[] nums = [...]; // Input array
+// int[] expectedNums = [...]; // The expected answer with correct length
+//
+// int k = removeDuplicates(nums); // Calls your implementation
+//
+// assert k == expectedNums.length;
+//
+//	for (int i = 0; i < k; i++) {
+//	   assert nums[i] == expectedNums[i];
+//	}
+//
+// If all assertions pass, then your solution will be accepted.
+func removeDuplicates(nums []int) int {
+	lNums := len(nums)
+	disregard := 0
+
+	for i := 0; i < lNums-1; i++ {
+		for {
+			j := i
+			if nums[j] == nums[j+1] {
+				fmt.Println(j)
+				disregard++
+				nums = moveToEnd(j, disregard, nums)
+				//nums = moveToEnd(j, nums)
+				j++
+			} else {
+				break
+			}
+		}
+	}
+	cnt := 0
+	for k := 0; k < lNums-1; k++ {
+		cnt++
+		if nums[k+1] <= nums[k] {
+			break
+		}
+	}
+	fmt.Println(cnt)
+	return -1
+}
+
+func moveToEnd(idx, disregard int, nums []int) []int {
+	fmt.Printf("len(nums)-1 = %d\n", len(nums)-1)
+	fmt.Printf("disregard = %d\n", disregard)
+	for i := idx; i < len(nums)-1; i++ {
+		fmt.Printf("%d\n", len(nums)-1-disregard)
+		next := nums[i+1]
+		nums[i+1] = nums[i]
+		nums[i] = next
+	}
+	//fmt.Println(nums)
+	return nums
+}
