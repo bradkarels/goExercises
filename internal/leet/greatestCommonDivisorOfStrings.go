@@ -31,10 +31,7 @@ func divideString(str, divisor string) bool {
 		for {
 			if len(s) >= len(divisor) {
 				if strings.Join(s[:divLen], ``) == divisor {
-					//fmt.Println(s)
 					s = s[divLen:]
-					//fmt.Println(s)
-					//fmt.Println("----------")
 				} else {
 					break
 				}
